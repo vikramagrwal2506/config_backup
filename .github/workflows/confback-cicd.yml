@@ -35,17 +35,3 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
-
-      - name: Executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            sudo apt-get -y update
-            cd home/prechecks
-            source venv_prechecks/bin/activate
-            python3 prechecks.py
-            
-
