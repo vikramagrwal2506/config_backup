@@ -1,4 +1,4 @@
-name: Prechecks_Network
+name: confback-cicd
 
 # Trigger deployment only on push to main branch
 on:
