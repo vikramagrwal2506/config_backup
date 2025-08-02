@@ -1,9 +1,12 @@
 import netmiko
 import getpass # For securely getting password input
+from datetime import datetime
 
 # --- User Credentials (can be hardcoded for testing, but secure input is recommended) ---
 username = "vikram.agarwal"
 password = "2Q90BhtyK-z-"
+
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # --- Read Device List ---
 devices_file = "devices.txt"
@@ -29,7 +32,7 @@ for ip in device_ips:
         net_connect = netmiko.ConnectHandler(**device_info)
         
         # --- Send Commands and Capture Output ---
-        output_filename = f"{ip}_output.txt"
+        output_filename = f"{ip}_{timestamp}.txt"
         with open(output_filename, 'w') as outfile:
             outfile.write(f"--- Output for Device: {ip} ---\n\n")
             for command in commands_to_send:
